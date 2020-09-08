@@ -1,10 +1,10 @@
 package main
 
 import (
-	docker "github.com/drone-plugins/drone-docker"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
+	docker "github.com/zillani/drone-dct"
 	"os"
 )
 

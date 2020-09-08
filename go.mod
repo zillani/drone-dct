@@ -1,4 +1,4 @@
-module github.com/drone-plugins/drone-docker
+module github.com/zillani/drone-dct
 
 require (
 	github.com/joho/godotenv v1.3.0
