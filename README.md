@@ -1,6 +1,6 @@
-# drone-docker
+# drone-DCT
 
-Drone DCT plugin uses Docker-in-Docker to sign Docker images to a container registry.
+Drone DCT (Docker Container Trust) plugin uses Docker-in-Docker to sign Docker images to a container registry.
 
 ## Build
 
@@ -22,7 +22,7 @@ docker build  --file docker/docker/Dockerfile.linux.amd64 --tag zshaik/drone-dct
 ```
 steps:
   - name: docker_build
-    image: zshaik/drone-dct:0.1.1
+    image: zshaik/drone-dct:0.1.6
     pull: always
     settings:
       passphrase:
@@ -31,11 +31,11 @@ steps:
         from_secret: repokey
       rootkey:
         from_secret: rootkey
-      rootcertname: harbortrust
+      rootcertname: <cert-name>
       rootkeyname:
         from_secret: rootkeyname
-      repo: zshaik/busybox
-      tag: signed-tag
+      repo: <repo-name>
+      tag: <image-tag>
       username:
         from_secret: docker_username
       password:

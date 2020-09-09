@@ -149,6 +149,42 @@ func (p Plugin) Exec() error {
 	return nil
 }
 
+func commandDaemon(daemon Daemon) *exec.Cmd {
+	args := []string{
+		"--data-root", daemon.StoragePath,
+		"--host=unix:///var/run/docker.sock",
+	}
+
+	if daemon.StorageDriver != "" {
+		args = append(args, "-s", daemon.StorageDriver)
+	}
+	if daemon.Insecure && daemon.Registry != "" {
+		args = append(args, "--insecure-registry", daemon.Registry)
+	}
+	if daemon.IPv6 {
+		args = append(args, "--ipv6")
+	}
+	if len(daemon.Mirror) != 0 {
+		args = append(args, "--registry-mirror", daemon.Mirror)
+	}
+	if len(daemon.Bip) != 0 {
+		args = append(args, "--bip", daemon.Bip)
+	}
+	for _, dns := range daemon.DNS {
+		args = append(args, "--dns", dns)
+	}
+	for _, dnsSearch := range daemon.DNSSearch {
+		args = append(args, "--dns-search", dnsSearch)
+	}
+	if len(daemon.MTU) != 0 {
+		args = append(args, "--mtu", daemon.MTU)
+	}
+	if daemon.Experimental {
+		args = append(args, "--experimental")
+	}
+	return exec.Command(dockerdExe, args...)
+}
+
 func commandTrustKeyLoad(trust Trust, certName string) *exec.Cmd {
 	rootKeyName := dockerTrustStore + trust.RootKeyName + ".key"
 	fmt.Println("rootkeyname", rootKeyName)
