@@ -1,5 +1,3 @@
-// +build !windows
-
 package docker
 
 import (
@@ -10,7 +8,7 @@ import (
 const dockerExe = "/usr/local/bin/docker"
 const dockerdExe = "/usr/local/bin/dockerd"
 const dockerHome = "/root/.docker/"
-const dockerTrustStore = dockerHome+"trust/private"
+const dockerTrustStore = dockerHome + "trust/private"
 
 func (p Plugin) startDaemon() {
 	cmd := commandDaemon(p.Daemon)

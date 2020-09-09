@@ -95,19 +95,19 @@ func main() {
 			EnvVar: "PLUGIN_DAEMON_OFF",
 		},
 		cli.StringFlag{
-			Name:   "docker.username",
+			Name:   "username",
 			Usage:  "docker username",
-			EnvVar: "DOCKER_USERNAME",
+			EnvVar: "PLUGIN_USERNAME",
 		},
 		cli.StringFlag{
-			Name:   "docker.password",
+			Name:   "password",
 			Usage:  "docker password",
-			EnvVar: "DOCKER_PASSWORD",
+			EnvVar: "PLUGIN_PASSWORD",
 		},
 		cli.StringFlag{
-			Name:   "docker.email",
+			Name:   "email",
 			Usage:  "docker email",
-			EnvVar: "DOCKER_EMAIL",
+			EnvVar: "PLUGIN_EMAIL",
 		},
 		cli.StringFlag{
 			Name:   "docker.config",
@@ -165,9 +165,9 @@ func run(c *cli.Context) error {
 	plugin := docker.Plugin{
 		Login: docker.Login{
 			Registry: c.String("docker.registry"),
-			Username: c.String("docker.username"),
-			Password: c.String("docker.password"),
-			Email:    c.String("docker.email"),
+			Username: c.String("username"),
+			Password: c.String("password"),
+			Email:    c.String("email"),
 			Config:   c.String("docker.config"),
 		},
 		Daemon: docker.Daemon{
