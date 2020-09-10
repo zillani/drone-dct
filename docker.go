@@ -99,7 +99,6 @@ func (p Plugin) Exec() error {
 
 	// login to the Docker registry
 	if p.Login.Password != "" {
-		fmt.Println("password is --------------", p.Login.Password)
 		cmd := commandLogin(p.Login)
 		err := cmd.Run()
 		if err != nil {
@@ -151,7 +150,6 @@ func (p Plugin) Exec() error {
 }
 
 func commandDaemon(daemon Daemon) *exec.Cmd {
-	fmt.Println("inside docker daemon ==========")
 	args := []string{
 		"--data-root", daemon.StoragePath,
 		"--host=unix:///var/run/docker.sock",
@@ -273,6 +271,7 @@ func initDCT() {
 }
 
 func dockerPull(repo, tag string) {
+	fmt.Println("pulling images")
 	repoUrl := fmt.Sprintf("%s:%s", repo, tag)
 	cmd := exec.Command("docker", "pull", repoUrl)
 	err := cmd.Run()
