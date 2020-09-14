@@ -29,7 +29,7 @@ docker run --rm \
   -e PLUGIN_REPO= zshaik/goldengoose \
   -e PLUGIN_TAG= v0.1.0 \
   -e PLUGIN_USERNAME= zshaik \
-  -e PLUGIN_PASSWORD= 9247411984 \
+  -e PLUGIN_PASSWORD= <password> \
   -e PLUGIN_TAG=latest \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
