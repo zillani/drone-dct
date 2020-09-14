@@ -186,7 +186,7 @@ func commandDaemon(daemon Daemon) *exec.Cmd {
 }
 
 func commandTrustKeyLoad(trust Trust, certName string) *exec.Cmd {
-	rootKeyName := dockerTrustStore + trust.RootKeyName + ".key"
+	rootKeyName := dockerTrustStore + trust.RootKeyName
 	fmt.Println("rootkeyname", rootKeyName)
 	return exec.Command(dockerExe, "trust", "key", "load", rootKeyName, "--name", certName)
 }
@@ -224,7 +224,7 @@ func commandInfo() *exec.Cmd {
 }
 
 func copyCerts(p Plugin) {
-	rootKeyPath := dockerTrustStore + p.Trust.RootKeyName + ".key"
+	rootKeyPath := dockerTrustStore + p.Trust.RootKeyName
 	loadTrustKeyAsFile(rootKeyPath, p.Trust.RootKey)
 }
 
