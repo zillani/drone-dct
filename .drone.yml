@@ -6,13 +6,13 @@ trigger:
   branch:
     - develop
     - master
-    - zshaik/*
   event:
+    - push
     - tag
 
 steps:
   - name: unit_tests
-    image: golang:1.13-alpine3.11
+    image: golang:1.14.9-alpine3.12
     environment:
       GO111MODULE: on
       CGO_ENABLED: 0
@@ -29,7 +29,7 @@ steps:
   - name: docker_build
     image: plugins/docker:18.09
     settings:
-      repo: github.com/mavenir/drone-dct:0.1.1
+      repo: github.com/mavenir/drone-dct
       registry: hub.docker.com
       username:
         from_secret: docker_username
@@ -39,8 +39,8 @@ steps:
         - ${DRONE_TAG}
     when:
       event:
+        - push
         - tag
       branch:
         - develop
         - master
-        - zshaik/*
